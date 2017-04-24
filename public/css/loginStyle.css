@@ -1,0 +1,23 @@
+body{
+  background-color: rgba(236, 240, 241,1.0);
+  font-family: 'Arvo', serif;
+}
+
+.form_title{
+  font-size: 32px;
+  color: rgba(52, 73, 94,1.0);
+}
+
+input{
+  text-align: center;
+}
+
+#login{
+  color: rgba(236, 240, 241,1.0);
+  background-color: rgba(39, 174, 96,1.0)
+}
+
+#register{
+  
+  background-color: rgba(52, 73, 94,1.0);
+}
