@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
 app.use('/', index);
+app.use('/login', require('./routes/login'))
 
 app.listen(port, function() {
 console.log("listening on port: ", port);
