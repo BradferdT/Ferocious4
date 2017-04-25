@@ -22,3 +22,19 @@ body {
   background-image: url('../files/bannerImg.jpg');
   background-size: cover;
 }
+
+.row_content{
+  height: 90%;
+}
+
+.macbook_image{
+  width: 85%;
+}
+
+.left_col{
+  height: 500px;
+}
+
+.right_col{
+  height: 500px;
+}
