@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Admin Page</title>
+    <!-- minified jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+       crossorigin="anonymous"></script>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <!-- CSS link -->
+    <link rel="stylesheet" href="/css/cpanel.css">
+  </head>
+  <body>
+   <h2><%= title %></h2>
+   <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header ">Delete Users</div>
+    <div class="collapsible-body">
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Email</th>
+          <th>Admin</th>
+        </tr>
+        <% for(var i = 0; i < users.length; i++) { %>
+        <tr>
+          <td><%= users[i].id %></td>
+          <td><a href=""><%= users[i].username %></a></td>
+          <td><%= users[i].password %></td>
+          <td><%= users[i].email %></td>
+          <td><%= users[i].admin %></td>
+          <td><a href="#">DELETE</a></td>
+          <td><a href="#">EDIT</a></td>
+
+        </tr>
+        <% } %>
+
+      </table>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header active ">Delete Lists</div>
+    <div class="collapsible-body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header ">Edit Lists</div>
+    <div class="collapsible-body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+  </li>
+</ul>
+
+  </body>
+</html>

@@ -9,6 +9,7 @@ var knex = require('./db/knex');
 
 var index = require('./routes/index');
 var list = require('./routes/lists');
+var cpanel = require('./routes/cpanel');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use('/', index);
 app.use('/login', require('./routes/login'));
 app.use('/home', list);
+app.use('/cpanel', cpanel);
 
 app.listen(port, function() {
 console.log("listening on port: ", port);
