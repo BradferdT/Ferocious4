@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('list_name');
     table.integer('user_id').notNullable();
+    table.string('description');
     table.boolean('completed').defaultTo(false);
     table.timestamps(true,true);
   })
