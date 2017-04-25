@@ -7,7 +7,6 @@ var cors = require('cors');
 var logger = require('morgan');
 var knex = require('./db/knex');
 
-var index = require('./routes/index');
 var list = require('./routes/lists');
 var cpanel = require('./routes/cpanel');
 
@@ -23,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser("ferociousfour"));
 
-app.use('/', index);
+app.use('/', require('./routes/auth'));
 app.use('/login', require('./routes/login'));
 app.use('/home', list);
 app.use('/cpanel', cpanel);

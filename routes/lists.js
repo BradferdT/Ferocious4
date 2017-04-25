@@ -4,10 +4,14 @@ var knex = require('../db/knex');
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  knex.raw(`select * from lists where user_id = ${'ferocious4'}`)
+  Promise.all([
+    knex.raw(`select * from lists where user_id = ${1}`)
+  ])
       .then((data) => {
-        res.render('index/index', {
-          userLists: data.rows
+        data = data.map(x => x.rows);
+        console.log(data);
+        res.render('home/index', {
+          userLists: data[0]
         });
       });
 });
