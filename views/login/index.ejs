@@ -22,12 +22,12 @@
              </div>
              <div class="row">
                <div class="col s6 offset-s3 form_background">
-                 <form action="/login" id="form_login">
+                 <form action="/login/signup" id="form_login" method="POST">
                    <div class="col s6 offset-s3">
-                     <input type="text" id="username" placeholder="Username" class="inputStyle" required>
-                     <input type="password" id="password" placeholder="Password" class="inputStyle" required>
+                     <input type="text" name="username" id="username" placeholder="Username" class="inputStyle" required>
+                     <input type="password" name="password" id="password" placeholder="Password" class="inputStyle" required>
                    </div>
-                   <div class="col s6 offset-s3 email_display" style="display: none"><input type="email" id="email" placeholder="Email" class="inputStyle"></div>
+                   <div class="col s6 offset-s3 email_display" style="display: none"><input type="email" name="email" id="email" placeholder="Email" class="inputStyle"></div>
 
                </div>
                <div class="col s6 offset-s3 form_background" style="padding: 25px">
@@ -36,6 +36,15 @@
                   </form>
                </div>
              </div>
+         </div>
+       </div>
+       <div class="row">
+         <div class="col s6 offset-s3 render_msg">
+           <% if(msg == 'Back'){%>
+             <a href="/"><%= msg %></a>
+           <%}else{%>
+             <a href="/"><%= msg %></a>
+           <%}%>
          </div>
        </div>
      </div>

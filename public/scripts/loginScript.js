@@ -11,10 +11,8 @@ $('#login').click(function(){
 $('#form_login').submit(function(e){
   if($(document.activeElement).val() == 'Register'){
     console.log('Register');
-    e.preventDefault();
   }else if($(document.activeElement).val() == 'Login'){
     console.log('login');
-    e.preventDefault();
   }else{
     e.preventDefault();
   }
