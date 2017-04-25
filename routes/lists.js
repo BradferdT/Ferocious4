@@ -10,10 +10,19 @@ router.get('/', (req, res) => {
       .then((data) => {
         data = data.map(x => x.rows);
         console.log(data);
-        res.render('home/index', {
+        res.render('home/index.ejs', {
           userLists: data[0]
         });
       });
 });
+
+router.post('/lists/add', (req, res) => {
+  console.log('starting');
+  knex.raw(`insert into lists values (default, '${req.body.name}', ${+req.body.user_id}, '${req.body.description}', default, default, default)`)
+    .then(() => {
+      console.log('two');
+      res.redirect('/home');
+    })
+})
 
 module.exports = router;
