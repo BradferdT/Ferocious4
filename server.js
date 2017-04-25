@@ -20,7 +20,7 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser());
+app.use(cookieParser("ferociousfour"));
 
 app.use('/', index);
 app.use('/login', require('./routes/login'));

@@ -12,6 +12,10 @@ body{
   color: rgba(52, 73, 94,1.0);
 }
 
+.render_msg{
+  text-align: center;
+}
+
 input{
   text-align: center;
 }
