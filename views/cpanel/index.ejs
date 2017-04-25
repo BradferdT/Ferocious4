@@ -24,7 +24,7 @@
    <h2><%= title %></h2>
    <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
   <li>
-    <div class="collapsible-header ">Delete Users</div>
+    <div class="collapsible-header">Users</div>
     <div class="collapsible-body">
       <table>
         <tr>
@@ -37,7 +37,7 @@
         <% for(var i = 0; i < users.length; i++) { %>
         <tr>
           <td><%= users[i].id %></td>
-          <td><a href=""><%= users[i].username %></a></td>
+          <td><a href="/cpanel/show/<%= users[i].username %>"><%= users[i].username %></a></td>
           <td><%= users[i].password %></td>
           <td><%= users[i].email %></td>
           <td><%= users[i].admin %></td>
@@ -51,9 +51,9 @@
     </div>
   </li>
   <li>
-    <div class="collapsible-header active ">Delete Lists</div>
+    <div class="collapsible-header">Lists</div>
     <div class="collapsible-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
     </div>
   </li>
   <li>

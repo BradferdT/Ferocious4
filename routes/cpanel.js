@@ -11,9 +11,10 @@ router.get('/', function(req, res, next) {
     })
 });
 
-router.get('/:id', function(req, res, next) {
-  knex.raw(`SELECT * from users WHERE id= ${req.params.id}`).then(function(data) {
-    res.render('cpanel/admin', { title: 'admin_mode' });
+router.get('/show/:name', function(req, res, next) {
+  knex.raw(`SELECT users.id, users.username, lists.list_name FROM users JOIN lists ON users.id = lists.user_id WHERE users.username='${req.params.name}'`).then(function(data) {
+    res.render('cpanel/show', { title: 'user',
+                                user: data.rows[0]});
   })
 });
 
