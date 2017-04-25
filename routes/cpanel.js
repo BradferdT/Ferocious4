@@ -4,7 +4,7 @@ var knex = require('../db/knex');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index/index', { title: 'Express' });
+  res.render('cpanel/admin', { title: 'Express' });
 });
 
 module.exports = router;
