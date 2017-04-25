@@ -1,0 +1,24 @@
+body {
+  background: rgba(236, 240, 241,1.0);
+  color: rgba(52, 73, 94,1.0);
+  font-family: 'Arvo', serif;
+}
+
+.nav-wrapper{
+  background-color: rgba(39, 174, 96,1.0);
+}
+
+.container-fluid{
+  height: 100vh;
+  width: 100vw;
+}
+
+.banner_row{
+  height: 30%;
+}
+
+.banner_img{
+  height: 100%;
+  background-image: url('../files/bannerImg.jpg');
+  background-size: cover;
+}
