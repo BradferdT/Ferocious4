@@ -14,7 +14,7 @@ router.post('/signup', function(req, res, next){
     .then(function(){
       res.cookie('username', username, {signed: true});
       res.cookie('email', req.body.email, {signed: true});
-      res.send('Created account')
+      res.redirect('/Path_to_main');
     })
     .catch(function(err){
       var message = 'Error';
