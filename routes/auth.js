@@ -42,6 +42,21 @@ router.get('/cpanel/', function(req, res, next){
   }
 })
 
+router.get('/main', function(req, res, next){
+  if(req.signedCookies.username){
+    next();
+  }else{
+    res.redirect('/');
+  }
+})
+
+router.get('/login/edit', function(req, res, next){
+  if(req.signedCookies.username){
+    next();
+  }else{
+    res.redirect('/login');
+  }
+})
 
 
 module.exports = router;

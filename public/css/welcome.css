@@ -49,20 +49,24 @@ body {
 }
 
 .live_demo{
+  box-shadow: rgba(0, 0, 0, 0.247059) 0px 3px 15px 0px;
   color: rgba(236, 240, 241,1.0);
   background-color: rgba(39, 174, 96,1.0);
 }
 
 .live_demo:hover{
+  box-shadow: rgba(0, 0, 0, 0.247059) 0px 13px 15px 0px;
   background-color: rgba(46, 204, 113,1.0)
 }
 
 .register{
+  box-shadow: rgba(0, 0, 0, 0.247059) 0px 3px 15px 0px;
   color: rgba(236, 240, 241,1.0);
   background-color: rgba(52, 73, 94,1.0);
 }
 
 .register:hover{
+  box-shadow: rgba(0, 0, 0, 0.247059) 0px 13px 15px 0px;
   background-color: rgba(44, 62, 80,1.0);
 }
 
