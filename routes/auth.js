@@ -24,6 +24,23 @@ router.get('/logout', function(req, res, next){
   res.redirect('/');
 })
 
+router.get('/login', function(req, res, next){
+  if(req.signedCookies.username){
+    res.redirect('/');
+  }else{
+    next();
+  }
+})
+
+router.get('/cpanel/', function(req, res, next){
+  if(req.signedCookies.admin == 'false'){
+    res.redirect('/');
+  }else if(req.signedCookies.admin == 'true'){
+    next();
+  }else{
+    res.redirect('/');
+  }
+})
 
 
 
