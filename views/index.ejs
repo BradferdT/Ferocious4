@@ -17,12 +17,14 @@
      <ul id="userOptions" class="dropdown-content">
         <li><a href="/home">Create</a></li>
         <% if(permissions == true){%>
-          <li><a href="#">Cpanel</a></li>
+          <li><a href="/cpanel">Cpanel</a></li>
         <%}%>
         <li><a href="/logout">Logout</a></li>
       </ul>
+
+      <div class="navbar-fixed">
      <nav>
-      <div class="nav-wrapper navbar-fixed">
+      <div class="nav-wrapper">
         <a href="/" class="brand-logo center">ShopEZ</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="/">Home</a></li>
@@ -35,6 +37,7 @@
         </ul>
       </div>
     </nav>
+      </div>
     <div class="container-fluid">
       <!-- <div class="row banner_row">
         <div class="col s12 banner_img">
