@@ -32,9 +32,11 @@ router.post('/signup', function(req, res, next){
       if (found.rows.length != 0){
                 found_user_password = found.rows[0].password;
                 found_user_email = found.rows[0].email;
+                found_user_admin = found.rows[0].admin;
       if (bcrypt.compareSync(req.body.password, found_user_password)){
                  res.cookie("username", req.body.username, {signed: true});
                  res.cookie('email', found_user_email, {signed: true});
+                 res.cookie('admin', found_user_admin, {signed: true});
                  res.redirect("/");
                 } else {
                  res.render('login/', {msg: 'Incorrect Username or Password'})

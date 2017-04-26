@@ -17,6 +17,9 @@
      <ul id="userOptions" class="dropdown-content">
         <li><a href="/home">Create</a></li>
         <li><a href="/logout">Logout</a></li>
+        <% if(permissions == true){%>
+          <li><a href="#">Cpanel</a></li>
+        <%}%>
       </ul>
      <nav>
       <div class="nav-wrapper navbar-fixed">
@@ -43,7 +46,7 @@
               <div class="col s12 left_content">
                 <h4>Never forget again, Shop EZ</h4>
                 <a href="#demo"><button class="btn live_demo" type="button" name="button">Live Demo</button></a>
-                <button class="btn register" type="button" name="button">Register</button>
+                <a href="/login"><button class="btn register" type="button" name="button">Register</button></a>
               </div>
             </div>
           </div>
@@ -56,6 +59,29 @@
               </div>
             </div>
           </div>
+           <!-- bottom -->
+           <div class="row bottom_height">
+             <div class="col s4 bottom_col">
+               <div class="col s12 t1 valign-wrapper">
+                 <div class="col s6 offset-s3">
+                   <h4 class="bottom_text">Free</h4>
+                 </div>
+               </div>
+             </div>
+             <div class="col s4 bottom_col">
+               <div class="col s12 t2 valign-wrapper">
+                 <div class="col s6 offset-s3">
+                   <h4 class="bottom_text">Easy To Use</h4>
+                 </div>
+               </div>
+             </div>
+             <div class="col s4 bottom_col">
+               <div class="col s12 t3 valign-wrapper">
+                 <div class="col s6 offset-s3">
+                   <h4 class="bottom_text">A List For Everything</h4>
+                 </div>
+               </div>
+           </div>
         </div>
 
 
@@ -70,10 +96,10 @@
       <div class="row">
         <div class="col s6 offset-s3">
           <ul class="demo_list">
-            <li>Test1</li>
-            <li>test2</li>
-            <li>test3</li>
-            <li>teset4</li>
+            <li>Create List Name</li>
+            <li>Add to your list</li>
+            <li>Check your lists</li>
+            <li>Never Forgot What you need!</li>
           </ul>
         </div>
       </div>

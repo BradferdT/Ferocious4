@@ -50,7 +50,7 @@ body {
 
 .live_demo{
   color: rgba(236, 240, 241,1.0);
-  background-color: rgba(39, 174, 96,1.0)
+  background-color: rgba(39, 174, 96,1.0);
 }
 
 .register{
@@ -78,4 +78,46 @@ body {
 
 .demo_list li{
   opacity: 0;
+}
+
+.bottom_height{
+  height: 26%;
+}
+
+.bottom_col{
+  padding: 5px !important;
+  margin-bottom: 45px;
+  height: 100%;
+}
+.t1{
+  height: 100%;
+
+}
+
+.t2{
+  height: 100%;
+
+}
+
+.t3{
+  height: 100%;
+}
+
+.bottom_text{
+  text-align: center;
+  color:rgba(39, 174, 96,1.0);
+}
+
+#userOptions{
+  margin-top: 65px;
+}
+
+
+.dropdown-content li a{
+  color: rgba(236, 240, 241,1.0) !important;
+  background-color: rgba(39, 174, 96,1.0) !important;
+}
+
+.dropdown-content li a:hover{
+  background-color: rgba(52, 73, 94,1.0);
 }
