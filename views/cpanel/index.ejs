@@ -41,9 +41,19 @@
           <td><%= users[i].password %></td>
           <td><%= users[i].email %></td>
           <td><%= users[i].admin %></td>
-          <td><a href="#">DELETE</a></td>
-          <td><a href="/cpanel/edit/<%= users[i].id %>">EDIT</a></td>
+          /* Modal trigger */
+          <td><a class="waves-effect waves-light btn" href="#modal1">Delete</a></td>
 
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>Confirm Deletion</h4>
+              <p>Once deleted the account cannot be recovered</p>
+            </div>
+            <div class="modal-footer">
+              <a href="/cpanel/delete/<%= users[i].id %>" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
+          <td><a href="/cpanel/edit/<%= users[i].id %>">EDIT</a></td>
         </tr>
         <% } %>
 
@@ -63,6 +73,8 @@
     </div>
   </li>
 </ul>
+<script type="text/javascript" src="/scripts/cpanel.js">
 
+</script>
   </body>
 </html>

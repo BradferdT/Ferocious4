@@ -1,3 +1,1 @@
-$('#user_list').click(function(){
-    $('#')
-});
+$('.modal').modal();

@@ -27,6 +27,7 @@ router.get('/edit/:id', function(req, res, next) {
        })
 });
 
+
 router.post('/:id', function(req, res, next) {
 console.log(req.body.name);
   knex.raw(`UPDATE users SET username = '${req.body.username}',
@@ -36,5 +37,14 @@ console.log(req.body.name);
         res.redirect('/cpanel');
       })
 });
+
+/* DELETE user account */
+router.get('/delete/:id', function(req, res, next) {
+  knex.raw(`DELETE from users WHERE id=${req.params.id}`).then(function(){
+    res.redirect('/cpanel')
+  })
+})
+
+
 
 module.exports = router;
