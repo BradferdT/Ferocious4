@@ -33,8 +33,49 @@ body {
 
 .left_col{
   height: 500px;
+  text-align: center;
 }
 
 .right_col{
   height: 500px;
+}
+
+.left_content{
+  text-align: center;
+}
+
+.right_content{
+  text-align: center;
+}
+
+.live_demo{
+  color: rgba(236, 240, 241,1.0);
+  background-color: rgba(39, 174, 96,1.0)
+}
+
+.register{
+  color: rgba(236, 240, 241,1.0);
+  background-color: rgba(52, 73, 94,1.0);
+}
+
+.demo_begin{
+  height: 10%;
+}
+
+.col_begin{
+  height: 100%;
+  background-color: rgba(52, 73, 94,1.0);
+}
+
+.demo_text{
+  color: rgba(236, 240, 241,1.0);
+  text-align: center;
+}
+
+.demo_list{
+  text-align: center;
+}
+
+.demo_list li{
+  opacity: 0;
 }
