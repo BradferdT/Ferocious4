@@ -7,7 +7,7 @@
          crossorigin="anonymous"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-      <link rel="stylesheet" href="/css/main.css">
+      <link rel="stylesheet" href="/css/show.css">
       <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <meta charset="utf-8">
@@ -44,14 +44,24 @@
 
     <div id="modal1" class="modal">
       <div class="modal-content">
-        <form action="/main/lists/add" method="post">
-          <input type="text" name="name" placeholder="List Name" required>
-          <input type="text" name="user_id" value=<%= user_id %> hidden>
-          <input type="text" name="description" placeholder="List Description" required>
-        </div>
+        <form id="walSearch">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col s9">
+                <input type="text" name="walmartSearch" placeholder="search for a shopping list item to add">
+              </div>
+              <div class="col s3">
+                <button type="submit" class="btn bttn" name="searchSubmit">Search</button>
+              </div>
+            </div>
+            <div class="row">
+              <ul id="searchList" class="collapsible" data-collapsible="accordion">
+              </ul>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="modal-footer">
-        <button class="btn" type="submit" name="submit">Create New Shopping List!</button>
-      </form>
       </div>
   </div>
 
@@ -60,44 +70,33 @@
 
        <div class="row">
          <div class="col s7">
-           <h2>Welcome, <%= navBarText %>!</h2>
+           <h2>View/Edit List</h2>
          </div>
          <div class="col s5">
-           <a class="btn btttn">Unfinished</a>
-           <a class="btn btttn">Completed</a>
+           <a id="itemAddBtn" class="btn btttn"><i class="material-icons">add</i>Add New List Item</a>
          </div>
        </div>
 
 
        <div class="row">
-         <div class="col s12 m6">
-           <div class="card-container card-containerz">
-             <div class="card cardz">
-               <div class="card-content card-contentz">
-                 <div class="addIt">
-                   <a href="#">
-                 <span class="card-title">Add New List<i class="material-icons">add</i></span>
-                  </a>
-                </div>
-                 </div>
-               </div>
-             </div>
-         </div>
-         <% userLists.map((x) => { %>
-           <div class="col s12 m6">
-             <div class="card-container card-containerz">
-               <div class="card cardz">
-                 <div class="card-content card-contentz">
-                   <span class="card-title"><%= x.list_name %> <a href="/main/<%= x.id %>/lists"><button class="btn bttn" type="button">View/Edit</button></a></span>
-                   <div class="list-description">
-                     <%= x.description %> <br><br>
-                     Last updated <%= dayParse(x.updated_at) %>
-                   </div>
-                   </div>
-                 </div>
-               </div>
-           </div>
-         <% }) %>
+         <ul class="collapsible popout" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header active"><i class="material-icons">toc</i>List Details</div>
+            <div class="collapsible-body">
+              <span>description: <%= userLists[0].description %> <br>
+                created: <%= dayParse(userLists[0].created_at) %> <br>
+                last updated: <%= dayParse(userLists[0].created_at) %>
+              </span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">schedule</i>Second</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">check</i>Third</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+        </ul>
        </div>
 
      </div>
@@ -118,25 +117,7 @@
        showHelp ? $('.tap-target').tapTarget('open') : null;
      </script>
 
-     <script type="text/javascript" src="/scripts/homeScript.js">
+     <script type="text/javascript" src="/scripts/show.js">
      </script>
    </body>
 </html>
-
-
-
-<!-- <div class="row">
-  <div class="col s12 m6">
-    <div class="card">
-      <div class="card-content white-text">
-        <span class="card-title">Card Title</span>
-        <p>I am a very simple card. I am good at containing small bits of information.
-        I am convenient because I require little markup to use effectively.</p>
-      </div>
-      <div class="card-action">
-        <a href="#">This is a link</a>
-        <a href="#">This is a link</a>
-      </div>
-    </div>
-  </div>
-</div> -->
