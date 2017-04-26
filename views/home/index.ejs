@@ -14,25 +14,35 @@
       <title></title>
    </head>
    <body>
-     <div class="navbar-fixed">
+     <ul id="userOptions" class="dropdown-content">
+        <li><a href="/home">Create</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <% if(permissions == true){%>
+          <li><a href="#">Cpanel</a></li>
+        <%}%>
+      </ul>
+      <div class="navbar-fixed">
      <nav>
       <div class="nav-wrapper">
         <a href="#" class="brand-logo center">ShopEZ</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
-          <li><a href="#">Logout</a></li>
+          <% if(show == true){%>
+            <li><a class="dropdown-button" href="#!" data-activates="userOptions"><%= navBarText %><i class="material-icons right">arrow_drop_down</i></a></li>
+          <%}else{%>
+            <li><a href="<%= link %>" class=""><%= navBarText %></a></li>
+          <%}%>
         </ul>
       </div>
     </nav>
-    </div>
-
+  </div>
 
     <div id="modal1" class="modal">
     <div class="modal-content">
-      <form action="/home/lists/add" method="post">
+      <form action="/main/lists/add" method="post">
         <input type="text" name="name" placeholder="List Name" required>
-        <input type="text" name="user_id" value=1 hidden>
+        <input type="text" name="user_id" value=<%= user_id %> hidden>
         <input type="text" name="description" placeholder="List Description" required>
     </div>
     <div class="modal-footer">
@@ -40,7 +50,6 @@
       </form>
     </div>
   </div>
-
 
      <div class="container">
 
@@ -50,39 +59,38 @@
 
        <div class="row">
          <div class="col s7">
-           <h1>Welcome, User!</h1>
+           <h2>Welcome, <%= navBarText %>!</h2>
          </div>
          <div class="col s5">
            <a class="waves-effect btn btttn">Unfinished</a>
            <a class="waves-effect btn btttn">Completed</a>
          </div>
        </div>
-       <div class="row">
 
-       </div>
+
        <div class="row">
-         <div class="addIt">
-           <a href="#">
          <div class="col s12 m6">
            <div class="card-container">
              <div class="card">
                <div class="card-content">
+                 <div class="addIt">
+                   <a href="#">
                  <span class="card-title">Add New List<i class="material-icons">add</i></span>
+                  </a>
+                </div>
                  </div>
                </div>
              </div>
          </div>
-         </a>
-        </div>
-
          <% userLists.map((x) => { %>
            <div class="col s12 m6">
              <div class="card-container">
                <div class="card">
                  <div class="card-content">
-                   <span class="card-title"><%= x.list_name %></span>
+                   <span class="card-title"><%= x.list_name %> <button class="btn bttn" type="button">View/Edit</button></span>
                    <div class="list-description">
-                     <%= x.description %>
+                     <%= x.description %> <br><br>
+                     Last updated <%= dayParse(x.updated_at) %>
                    </div>
                    </div>
                  </div>

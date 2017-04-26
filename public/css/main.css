@@ -16,12 +16,36 @@ body {
 
 .card {
   height: 20vh;
+
 }
 .card-action {
   color: rgba(52, 73, 94,1.0);
+
+}
+.list-description {
+  max-width: 90%;
+  overflow-x: auto;
+}
+
+.bttn {
+  background-color: rgba(52, 73, 94,1.0);
+  float: right;
 }
 
 .btttn {
   margin-top: 6vh;
   background-color: rgba(52, 73, 94,1.0);
+}
+
+#userOptions{
+  margin-top: 65px;
+}
+
+.dropdown-content li a{
+  color: rgba(236, 240, 241,1.0) !important;
+  background-color: rgba(39, 174, 96,1.0) !important;
+}
+
+.dropdown-content li a:hover{
+  background-color: rgba(52, 73, 94,1.0) !important;
 }

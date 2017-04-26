@@ -1,3 +1,5 @@
+$('.tap-target').tapTarget('open');
+
 $('.modal').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
       opacity: .5, // Opacity of modal background
@@ -14,6 +16,17 @@ $('.modal').modal({
     }
   );
 
-  $('.addIt').click(() => {
-    $('#modal1').modal('open');
-  });
+$('.addIt').click(() => {
+  $('#modal1').modal('open');
+});
+
+Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
+};
+
+let dayParse = (aDate) => {
+  return (aDate.getYear() + 1900) + '-' + (aDate.getMonth() + 1).pad(2) + '-' + aDate.getDate().
+pad(2);
+}
