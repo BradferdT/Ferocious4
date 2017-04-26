@@ -24,7 +24,7 @@ app.use(cookieParser("ferociousfour"));
 
 app.use('/', require('./routes/auth'));
 app.use('/login', require('./routes/login'));
-app.use('/home', list);
+app.use('/main', list);
 app.use('/cpanel', cpanel);
 
 app.listen(port, function() {
