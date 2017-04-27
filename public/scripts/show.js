@@ -25,7 +25,7 @@ $('#walSearch').submit(() => {
     data.items.map((x,y) => {
       $('#searchList').append(`
         <li>
-          <div class="collapsible-header">
+          <div class="collapsible-header"> 
             <span style="text-align:initial;">
               ${x.name}
             </span>
