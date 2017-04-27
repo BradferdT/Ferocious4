@@ -49,6 +49,13 @@ router.get('/', (req, res) => {
       });
 });
 
+router.get('/info/:id/lists', (req, res) => {
+  knex.raw(`select * from content join lists on content.list_id = lists.id where lists.id = ${req.params.id}`)
+    .then((data) => {
+      res.json(data);
+    });
+});
+
 router.get('/:id/lists', (req, res) => {
   var loggedIn = false, admin = false, linkForBtn = '/login', barText = 'Login';
   if(req.signedCookies.username && req.signedCookies.admin == 'true'){
@@ -70,11 +77,12 @@ router.get('/:id/lists', (req, res) => {
     if(data[2][0] && data[2][0].user_id == data[1][0].id){
       console.log(data[2][0].user_id, data[1][0].id);
     }
-    console.log(data[0]);
+    console.log(data[2]);
     res.render('home/show.ejs', {
       userLists: data[0],
       userListsLength: data[0].length,
       user_id: data[1][0].id,
+      listContent: data[2],
       dayParse: dayParse,
       navBarText: barText,
       link: linkForBtn,
@@ -84,6 +92,16 @@ router.get('/:id/lists', (req, res) => {
   }).catch((data) => {
     console.log(data);
   });
+});
+
+router.post('/content/add', (req, res) => {
+  console.log(req.body);
+  knex.raw(`insert into content values (default, ${+req.body.list_id}, ${+req.body.walmart_id}, '${req.body.item_name}', '${req.body.category_path}', ${+req.body.sale_price}, '${req.body.description}', '${req.body.thumbnail_image}', '${req.body.medium_image}', '${req.body.large_image}', '${req.body.product_url}', '${req.body.customer_rating}', '${req.body.available_online}', default, default)`)
+      .then(() => {
+        res.redirect(`/main/${+req.body.list_id}/lists`);
+      }).catch((err) => {
+        console.log(err);
+      })
 });
 
 router.post('/lists/add', (req, res) => {

@@ -88,14 +88,27 @@
                 last updated: <%= dayParse(userLists[0].created_at) %>
               </span></div>
           </li>
-          <li>
-            <div class="collapsible-header"><i class="material-icons">schedule</i>Second</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-          </li>
-          <li>
-            <div class="collapsible-header"><i class="material-icons">check</i>Third</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-          </li>
+          <%listContent.map((x) => { %>
+            <% if (x.completed) { %>
+              <li class="listContent completed">
+                <div class="collapsible-header"><i class="material-icons">check</i><%= x.item_name %></div>
+                <div class="collapsible-body">
+                  <span>
+                    <h3 style="display:inline;"><%= x.sale_price %></h3> at <a href=<%= x.product_url %>>WalMart</a>
+                  </span>
+                </div>
+              </li>
+            <% } else { %>
+              <li class="listContent incomplete">
+                <div class="collapsible-header"><i class="material-icons">schedule</i><%= x.item_name %></div>
+                <div class="collapsible-body">
+                  <span>
+                    <h3 style="display:inline;"><%= x.sale_price %></h3> at <a href=<%= x.product_url %>>WalMart</a>
+                  </span>
+                </div>
+              </li>
+            <% } %>
+          <% }); %>
         </ul>
        </div>
 
@@ -113,6 +126,7 @@
        </div>
      </div>
      <script type="text/javascript">
+      let listId = "<%= userLists[0].id %>";
        let showHelp = +'<%= userListsLength %>'< 1;
        showHelp ? $('.tap-target').tapTarget('open') : null;
      </script>
