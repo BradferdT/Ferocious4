@@ -23,56 +23,61 @@
   <body>
    <h2><%= title %></h2>
    <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
-  <li>
-    <div class="collapsible-header">Users</div>
-    <div class="collapsible-body">
-      <table class='highlight'>
-        <tr>
-          <th>Id</th>
-          <th>Username</th>
-          <th>Password</th>
-          <th>Email</th>
-          <th>Admin</th>
-        </tr>
-        <% for(var i = 0; i < users.length; i++) { %>
-        <tr>
-          <td><%= users[i].id %></td>
-          <td><a href="/cpanel/show/<%= users[i].username %>"><%= users[i].username %></a></td>
-          <td><%= users[i].password %></td>
-          <td><%= users[i].email %></td>
-          <td><%= users[i].admin %></td>
-          /* Modal trigger */
-          <td><a class="waves-effect waves-light btn" href="#modal1">Delete</a></td>
+    <li>
+      <div class="collapsible-header">USERS</div>
+      <div class="collapsible-body">
+        <% for (var i = 0; i < users.length; i++) { %>
 
-          <div id="modal1" class="modal">
-            <div class="modal-content">
-              <h4>Confirm Deletion</h4>
-              <p>Once deleted the account cannot be recovered</p>
-            </div>
-            <div class="modal-footer">
-              <a href="/cpanel/delete/<%= users[i].id %>" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
+          <div class="row">
+            <form action="/cpanel/edit/<%= users[i].id %>" id="form_login" method="POST"class="col s12">
+              <div class="row">
+                <div id="username_input"class="input-field col s2">
+                  <input value="<%=users[i].username %>" name="username"id="username" type="text" class="validate">
+                  <label for="username">Username</label>
+                </div>
+                <div id="password_input"class="input-field col s2">
+                  <input value="<%=users[i].password %>"name="password" type="password" class="validate">
+                  <label for="password">Password</label>
+                </div>
+                <div class="input-field col s2">
+                  <input value="<%=users[i].email %>"name="email" type="email" class="validate">
+                  <label for="email">Email</label>
+                </div>
+                <div id="admin_drop" class="input-field col s2">
+                  <select class="browser-default">
+                    <option value="" disabled selected>Admin Rights</option>
+                    <option value="true">TRUE</option>
+                    <option value="false">FALSE</option>
+                  </select>
+                </div>
+                <div class="input-field col s2">
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                  </button>
+                </div>
+                <div class="input-field col s2">
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Delete
+                  </button>
+                </div>
+
+              </div>
+            </form>
           </div>
-          <td><a href="/cpanel/edit/<%= users[i].id %>">EDIT</a></td>
-        </tr>
         <% } %>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header">LISTS</div>
+      <div class="collapsible-body">
 
-      </table>
-    </div>
-  </li>
-  <li>
-    <div class="collapsible-header">Lists</div>
-    <div class="collapsible-body">
-
-    </div>
-  </li>
-  <li>
-    <div class="collapsible-header ">Edit Lists</div>
-    <div class="collapsible-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-  </li>
-</ul>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header ">CREATE</div>
+      <div class="collapsible-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+    </li>
+  </ul>
 <script type="text/javascript" src="/scripts/cpanel.js">
 
 </script>

@@ -23,6 +23,7 @@ router.get('/show/:name', function(req, res, next) {
 router.get('/edit/:id', function(req, res, next) {
    knex.raw(`SELECT * from users WHERE id=${req.params.id}`)
        .then(function(data){
+         console.log(data.rows[0])
          res.render('cpanel/edit', { userEdit: data.rows[0]});
        })
 });
