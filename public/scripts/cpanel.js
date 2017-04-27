@@ -9,4 +9,5 @@ $('.dropdown-button').dropdown({
     stopPropagation: false // Stops event propagation
   }
 );
-      
+
+$(".userOptions").dropdown();

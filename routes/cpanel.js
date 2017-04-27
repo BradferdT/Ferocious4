@@ -6,9 +6,12 @@ var bcrypt = require('bcrypt');
 /* GET All users. */
 router.get('/', function(req, res, next) {
   knex.raw('SELECT * from users').then(function(data) {
-
+    var admin = true, loggedIn = true, barText = req.signedCookies.username;
     res.render('cpanel/index', { title: 'admin_mode',
-                                 users: data.rows});
+                                 users: data.rows,
+                                 permissions: admin,
+                                 show: loggedIn,
+                                 navBarText: barText});
     })
 });
 

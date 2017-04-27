@@ -21,7 +21,29 @@
     <link rel="stylesheet" href="/css/cpanel.css">
   </head>
   <body>
-   <h2><%= title %></h2>
+    <ul id="userOptions" class="dropdown-content">
+       <li><a href="/main">Main</a></li>
+       <% if(permissions == true){%>
+         <li><a href="/cpanel/">Cpanel</a></li>
+       <%}%>
+       <li><a href="/logout">Logout</a></li>
+     </ul>
+     <div class="navbar-fixed">
+    <nav>
+     <div class="nav-wrapper">
+       <a href="/" class="brand-logo center">Admin Panel</a>
+       <ul id="nav-mobile" class="right hide-on-med-and-down">
+         <li><a href="/">Home</a></li>
+         <li><a href="#">About</a></li>
+         <% if(show == true){%>
+           <li><a class="dropdown-button" href="#!" data-activates="userOptions"><%= navBarText %><i class="material-icons right"></i></a></li>
+         <%}else{%>
+           <li><a href="<%= link %>" class=""><%= navBarText %></a></li>
+         <%}%>
+       </ul>
+     </div>
+   </nav>
+ </div>
    <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
     <li>
       <div class="collapsible-header">USERS</div>
@@ -29,7 +51,7 @@
         <% for (var i = 0; i < users.length; i++) { %>
 
           <div class="row">
-            <form action="/cpanel/update/<%= users[i].id %>" method="POST" class="col s12">
+            <form action="/cpanel/update/<%= users[i].id %>" method="POST" class="col s10">
               <div class="row">
                 <div id="username_input"class="input-field col s2">
                   <input value="<%=users[i].username %>" name="username"id="username" type="text" class="validate">
@@ -39,7 +61,7 @@
                   <input placeholder="enter new password" name="password" type="password" class="validate">
                   <label for="password">Password</label>
                 </div>
-                <div class="input-field col s2">
+                <div id="email_input" class="input-field col s2">
                   <input value="<%=users[i].email %>"name="email" type="email" class="validate">
                   <label for="email">Email</label>
                 </div>
