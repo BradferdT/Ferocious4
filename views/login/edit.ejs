@@ -10,42 +10,39 @@
       <link rel="stylesheet" href="/css/loginStyle.css">
       <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
       <meta charset="utf-8">
-      <title>Edit Account</title>
+      <title>ShopEZ - Edit Account</title>
    </head>
    <body>
-     <div class="container-fluid">
-
-       <div class="row">
-         <div class="col s12 center col_form_height">
-             <div class="col s6 offset-s3 form_background">
-               <span class="form_title">Edit</span>
-             </div>
-             <div class="row">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col s12 center col_form_height">
                <div class="col s6 offset-s3 form_background">
-                 <form action="/login/edit" id="form_login" method="POST">
-                   <div class="col s6 offset-s3">
-                     <input type="password" name="password" id="password" placeholder="Enter New Password" class="inputStyle">
-                   </div>
-                   <div class="col s6 offset-s3 email_display"><input type="email" name="email" id="email" placeholder="<%= passInData.email %>" class="inputStyle"></div>
-
+                  <span class="form_title">Edit</span>
                </div>
-               <div class="col s6 offset-s3 form_background" style="padding: 25px">
-                 <input type="submit" class="btn" value="Update">
+               <div class="row">
+                  <div class="col s6 offset-s3 form_background">
+                     <form action="/login/edit" id="form_login" method="POST">
+                        <div class="col s6 offset-s3">
+                           <input type="password" name="password" id="password" placeholder="Enter New Password" class="inputStyle">
+                        </div>
+                        <div class="col s6 offset-s3 email_display"><input type="email" name="email" id="email" placeholder="<%= passInData.email %>" class="inputStyle"></div>
+                  </div>
+                  <div class="col s6 offset-s3 form_background" style="padding: 25px">
+                  <input type="submit" class="btn" value="Update">
                   </form>
+                  </div>
                </div>
-             </div>
+            </div>
          </div>
-       </div>
-       <div class="row">
-         <div class="col s6 offset-s3 render_msg">
-           <% if(msg == 'Back'){%>
-             <a href="/"><%= msg %></a>
-           <%}else{%>
-             <a href="/"><%= msg %></a>
-           <%}%>
+         <div class="row">
+            <div class="col s6 offset-s3 render_msg">
+               <% if(msg == 'Back'){%>
+               <a href="/"><%= msg %></a>
+               <%}else{%>
+               <a href="/"><%= msg %></a>
+               <%}%>
+            </div>
          </div>
-       </div>
-     </div>
-
+      </div>
    </body>
 </html>

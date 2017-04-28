@@ -50,6 +50,7 @@ Promise.all([newPass, newEmail, newPriv, newUser])
 /* DELETE user account */
 router.get('/delete/:id', function(req, res, next) {
   knex.raw(`DELETE from users WHERE id=${req.params.id}`).then(function(){
+    console.log('deleted');
     res.redirect('/cpanel')
   })
 })
