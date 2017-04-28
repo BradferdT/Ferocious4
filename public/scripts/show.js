@@ -13,7 +13,10 @@ $('.modal').modal({
       } // Callback for Modal close
     }
   );
+
+
 //$('.incomplete').hide();
+
 $('#itemAddBtn').click(() => {
   $('#modal1').modal('open');
 });
@@ -107,7 +110,7 @@ $.getJSON(`https://cors-anywhere.herokuapp.com/http://api.walmartlabs.com/v1/sea
                 <input type="text" name="customer_rating" value="null" hidden>
                 <input type="text" name="available_online" value="false" hidden>
                 <input type="submit" hidden>
-              </form>
+            </form>
         </div>
       </li>`);
 });
