@@ -20,27 +20,28 @@
 
      <ul id="userOptions" class="dropdown-content">
         <li><a href="/main">Main</a></li>
+        <li><a href="/login/edit">Account</a></li>
         <% if(permissions == true){%>
-          <li><a href="/cpanel/">Cpanel</a></li>
+        <li><a href="/cpanel">Cpanel</a></li>
         <%}%>
         <li><a href="/logout">Logout</a></li>
-      </ul>
-      <div class="navbar-fixed">
-     <nav>
-      <div class="nav-wrapper">
-          <a href="/" class="brand-logo center">ShopEZ <i class="medium material-icons">shopping_cart</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/">Home</a></li>
-          <li><a href="#">About</a></li>
-          <% if(show == true){%>
-            <li><a class="dropdown-button" href="#!" data-activates="userOptions"><%= navBarText %><i class="material-icons right">arrow_drop_down</i></a></li>
-          <%}else{%>
-            <li><a href="<%= link %>" class=""><%= navBarText %></a></li>
-          <%}%>
-        </ul>
-      </div>
-    </nav>
-  </div>
+     </ul>
+     <div class="navbar-fixed">
+        <nav>
+           <div class="nav-wrapper">
+              <a href="/" class="brand-logo center">ShopEZ <i class="medium material-icons">shopping_cart</i></a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                 <li><a href="/">Home</a></li>
+                 <li><a href="/about">About</a></li>
+                 <% if(show == true){%>
+                 <li><a class="dropdown-button" href="#!" data-activates="userOptions"><%= navBarText %><i class="material-icons right">arrow_drop_down</i></a></li>
+                 <%}else{%>
+                 <li><a href="<%= link %>" class=""><%= navBarText %></a></li>
+                 <%}%>
+              </ul>
+           </div>
+        </nav>
+     </div>
 
     <div id="modal1" class="modal">
       <div class="modal-content">
@@ -63,8 +64,8 @@
            <h2>Welcome, <%= navBarText %>!</h2>
          </div>
          <div class="col s5">
-           <a class="btn btttn">Unfinished</a>
-           <a class="btn btttn">Completed</a>
+           <a id="unfin" class="btn btttn">Unfinished</a>
+           <a id="fin" class="btn btttn">Completed</a>
          </div>
        </div>
 
@@ -84,7 +85,7 @@
              </div>
          </div>
          <% userLists.map((x) => { %>
-           <div class="col s12 m6">
+           <div class="col s12 m6 <%= x.completed %>">
              <div class="card-container card-containerz">
                <div class="card cardz">
                  <div class="card-content card-contentz">
@@ -103,19 +104,33 @@
      </div>
       <div class="fixed-action-button" style="position:absolute; bottom:0; right:0; margin-right:3;">
        <a id="menu" class="btn-floating btn-large grey darken-3">
-         <i class="large material-icons">info</i>
+         <i id="info" class="large material-icons">info</i>
        </a>
       </div>
 
      <div class="tap-target" data-activates="menu">
        <div class="tap-target-content">
-         <h5>Title</h5>
-         <p>A bunch of text</p>
+         <h5>Welcome to ShopEZ!</h5>
+         <p>Here you can find and manage all of your lists. Click on "Add a new list" to create a list and get started!</p>
        </div>
      </div>
      <script type="text/javascript">
        let showHelp = +'<%= userListsLength %>'< 1;
-       showHelp ? $('.tap-target').tapTarget('open') : null;
+       let open = false;
+       if(showHelp){
+         $('.tap-target').tapTarget('open');
+         open = true;
+       }
+       $('#info').click(() => {
+         if(open){
+          $('.tap-target').tapTarget('close');
+          open = false;
+        } else {
+          $('.tap-target').tapTarget('open');
+          open = true;
+        }
+       });
+
      </script>
 
      <script type="text/javascript" src="/scripts/homeScript.js">

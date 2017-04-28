@@ -20,27 +20,28 @@
 
      <ul id="userOptions" class="dropdown-content">
         <li><a href="/main">Main</a></li>
+        <li><a href="/login/edit">Account</a></li>
         <% if(permissions == true){%>
-          <li><a href="/cpanel/">Cpanel</a></li>
+        <li><a href="/cpanel">Cpanel</a></li>
         <%}%>
         <li><a href="/logout">Logout</a></li>
-      </ul>
-      <div class="navbar-fixed">
-     <nav>
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo center">ShopEZ</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/">Home</a></li>
-          <li><a href="#">About</a></li>
-          <% if(show == true){%>
-            <li><a class="dropdown-button" href="#!" data-activates="userOptions"><%= navBarText %><i class="material-icons right">arrow_drop_down</i></a></li>
-          <%}else{%>
-            <li><a href="<%= link %>" class=""><%= navBarText %></a></li>
-          <%}%>
-        </ul>
-      </div>
-    </nav>
-  </div>
+     </ul>
+     <div class="navbar-fixed">
+        <nav>
+           <div class="nav-wrapper">
+              <a href="/" class="brand-logo center">ShopEZ <i class="medium material-icons">shopping_cart</i></a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                 <li><a href="/">Home</a></li>
+                 <li><a href="/about">About</a></li>
+                 <% if(show == true){%>
+                 <li><a class="dropdown-button" href="#!" data-activates="userOptions"><%= navBarText %><i class="material-icons right">arrow_drop_down</i></a></li>
+                 <%}else{%>
+                 <li><a href="<%= link %>" class=""><%= navBarText %></a></li>
+                 <%}%>
+              </ul>
+           </div>
+        </nav>
+     </div>
 
     <div id="modal1" class="modal" style="width:67%;">
       <div class="modal-content">
@@ -64,16 +65,21 @@
       <div class="modal-footer">
       </div>
   </div>
-
+<% let cost = 0.00; listContent.map((x) => { cost += x.sale_price}); %>
      <div class="container">
 
 
        <div class="row">
-         <div class="col s7">
-           <h2>View/Edit List</h2>
-         </div>
          <div class="col s5">
-           <a id="itemAddBtn" class="btn btttn"><i class="material-icons">add</i>Add New List Item</a>
+           <h2>Total: $<%= cost.toFixed(2) %></h2>
+         </div>
+         <div class="col s7">
+           <a id="itemAddBtn" class="btn btttn">Add New List Item</a>
+           <form action="/main/lists/delete" method="post" style="display:inline;">
+             <input type="text" name="list_id" value=<%= userLists[0].id %> hidden>
+             <button type="submit" class="btn btttn" style="background-color: rgba(231, 76, 60,1.0);">Delete List</button>
+           </form>
+           <a class="btn btttn" href="/main">Back</a>
          </div>
        </div>
 
@@ -83,35 +89,20 @@
           <li>
             <div class="collapsible-header active"><i class="material-icons">toc</i>List Details</div>
             <div class="collapsible-body">
-              <span>description: <%= userLists[0].description %> <br>
+              <span><h3><%= userLists[0].list_name %></h3>
+                <%= userLists[0].description %> <br>
                 created: <%= dayParse(userLists[0].created_at) %> <br>
                 last updated: <%= dayParse(userLists[0].created_at) %>
               </span></div>
           </li>
+
           <%listContent.map((x) => { %>
-            <% console.log(x.completed); if (x.completed) { %>
-              <li class="listContent completed">
-                <div class="collapsible-header"><i class="material-icons">check</i><%= x.item_name %></div>
-                <div class="collapsible-body">
-                  <span>
-                    <h3 style="display:inline;"><%= x.sale_price %></h3> at <a href=<%= x.product_url %>>WalMart</a>
-                  </span>
-                  <span style="float:right;">
-                    <form action="/main/content/toggle" method="post">
-                      <input type="text" name="id" value=<%= x.id %> hidden>
-                      <input type="text" name="list_id" value=<%= x.list_id %> hidden>
-                      <button type="submit" class="btn bttn" name="uncomplete" formaction="/main/content/uncomplete">Mark Unfinished</button>
-                      <button type="submit" class="btn bttn" style="margin-right:2vh;" name="delete" formaction="/main/content/delete">Delete Item</button>
-                    </form>
-                  </span>
-                </div>
-              </li>
-            <% } else { %>
+            <% if (!x.completed) { %>
               <li class="listContent incomplete">
                 <div class="collapsible-header"><i class="material-icons">schedule</i><%= x.item_name %></div>
                 <div class="collapsible-body">
                   <span>
-                    <h3 style="display:inline;"><%= x.sale_price %></h3> at <a href=<%= x.product_url %>>WalMart</a>
+                    <h3 style="display:inline;">$<%= x.sale_price %></h3> at <a href=<%= x.product_url %>>WalMart</a>
                   </span>
                   <span style="float:right;">
                     <form action="/main/content/toggle" method="post">
@@ -125,26 +116,61 @@
               </li>
             <% } %>
           <% }); %>
+
+          <%listContent.map((x) => { %>
+            <% if (x.completed) { %>
+              <li class="listContent completed">
+                <div class="collapsible-header"><i class="material-icons">check</i><%= x.item_name %></div>
+                <div class="collapsible-body">
+                  <span>
+                    <h3 style="display:inline;">$<%= x.sale_price %></h3> at <a href=<%= x.product_url %>>WalMart</a>
+                  </span>
+                  <span style="float:right;">
+                    <form action="/main/content/toggle" method="post">
+                      <input type="text" name="id" value=<%= x.id %> hidden>
+                      <input type="text" name="list_id" value=<%= x.list_id %> hidden>
+                      <button type="submit" class="btn bttn" name="uncomplete" formaction="/main/content/uncomplete">Mark Unfinished</button>
+                      <button type="submit" class="btn bttn" style="margin-right:2vh;" name="delete" formaction="/main/content/delete">Delete Item</button>
+                    </form>
+                  </span>
+                </div>
+              </li>
+            <% } %>
+          <% }); %>
         </ul>
        </div>
 
      </div>
+
       <div class="fixed-action-button" style="position:absolute; bottom:0; right:0; margin-right:3;">
        <a id="menu" class="btn-floating btn-large grey darken-3">
-         <i class="large material-icons">info</i>
+         <i id="info" class="large material-icons">info</i>
        </a>
       </div>
 
      <div class="tap-target" data-activates="menu">
        <div class="tap-target-content">
-         <h5>Title</h5>
-         <p>A bunch of text</p>
+         <h5>Edit your list!</h5>
+         <p>This is your list! Click on the "Add new list item" to lookup a new item to add to your list!</p>
        </div>
      </div>
      <script type="text/javascript">
       let listId = "<%= userLists[0].id %>";
-       let showHelp = +'<%= userListsLength %>'< 1;
-       showHelp ? $('.tap-target').tapTarget('open') : null;
+       let showHelp = +'<%= listContent %>'< 1;
+       let open = false;
+       if(showHelp){
+         $('.tap-target').tapTarget('open');
+         open = true;
+       }
+       $('#info').click(() => {
+         if(open){
+          $('.tap-target').tapTarget('close');
+          open = false;
+        } else {
+          $('.tap-target').tapTarget('open');
+          open = true;
+        }
+       });
      </script>
 
      <script type="text/javascript" src="/scripts/show.js">

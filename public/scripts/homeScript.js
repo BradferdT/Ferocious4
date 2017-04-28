@@ -20,6 +20,16 @@ $('.addIt').click(() => {
   $('#modal1').modal('open');
 });
 
+$('#unfin').click(() => {
+  $('.false').show();
+  $('.true').hide();
+});
+
+$('#fin').click(() => {
+  $('.true').show();
+  $('.false').hide();
+});
+
 Number.prototype.pad = function(size) {
     var s = String(this);
     while (s.length < (size || 2)) {s = "0" + s;}

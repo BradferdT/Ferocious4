@@ -71,13 +71,13 @@ router.get('/:id/lists', (req, res) => {
   Promise.all([
     knex.raw(`select * from lists where id = ${req.params.id}`),
     knex.raw(`select id from users where username = '${req.signedCookies.username}'`),
-    knex.raw(`select *, content.id as id from content join lists on content.list_id = lists.id where lists.id = ${req.params.id}`)
+    knex.raw(`select *, content.id as id, content.completed as completed from content join lists on content.list_id = lists.id where lists.id = ${req.params.id}`)
   ]).then((data) => {
     data = data.map(x => x.rows);
     if(data[2][0] && data[2][0].user_id == data[1][0].id){
       console.log(data[2][0].user_id, data[1][0].id);
     }
-    console.log(data[2]);
+    console.log(data[0][0]);
     res.render('home/show.ejs', {
       userLists: data[0],
       userListsLength: data[0].length,
@@ -124,6 +124,13 @@ router.post('/content/delete', (req, res) => {
       .then(() => {
         res.redirect(`/main/${+req.body.list_id}/lists`);
       });
+});
+
+router.post('/lists/delete', (req, res) => {
+  knex.raw(`delete from lists where id = ${req.body.list_id}`)
+    .then(() => {
+      res.redirect('/main')
+    });
 });
 
 router.post('/lists/add', (req, res) => {
