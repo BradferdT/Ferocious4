@@ -86,6 +86,30 @@ $.getJSON(`https://cors-anywhere.herokuapp.com/http://api.walmartlabs.com/v1/sea
         </div>
       </li>`);
   });
+  $('#searchList').append(`
+      <li>
+        <div class="collapsible-header active activate">
+          <span style="text-align:initial;">
+            Cant find what you're looking for? Add a custom item!
+          </span>
+          <div>
+            <form action="/main/content/add" method="post">
+                <input type="text" name="list_id" value="${+listId}" hidden>
+                <input type="text" name="walmart_id" value="0" hidden>
+                <input type="text" name="item_name" placeholder="Item Name" required>
+                <input type="text" name="category_path" value="null" hidden>
+                <input type="number" step="0.01" name="sale_price" placeholder="Expected Price" required><br>
+                <input type="text" name="description" value="${null}" hidden>
+                <input type="text" name="thumbnail_image" value="null" hidden>
+                <input type="text" name="medium_image" value="null" hidden>
+                <input type="text" name="large_image" value="null" hidden>
+                <input type="text" name="product_url" value="#" hidden>
+                <input type="text" name="customer_rating" value="null" hidden>
+                <input type="text" name="available_online" value="false" hidden>
+                <input type="submit" hidden>
+              </form>
+        </div>
+      </li>`);
 });
 
 $('.activate').collapsible('open', 0);
