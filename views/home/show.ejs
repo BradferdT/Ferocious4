@@ -89,12 +89,20 @@
               </span></div>
           </li>
           <%listContent.map((x) => { %>
-            <% if (x.completed) { %>
+            <% console.log(x.completed); if (x.completed) { %>
               <li class="listContent completed">
                 <div class="collapsible-header"><i class="material-icons">check</i><%= x.item_name %></div>
                 <div class="collapsible-body">
                   <span>
                     <h3 style="display:inline;"><%= x.sale_price %></h3> at <a href=<%= x.product_url %>>WalMart</a>
+                  </span>
+                  <span style="float:right;">
+                    <form action="/main/content/toggle" method="post">
+                      <input type="text" name="id" value=<%= x.id %> hidden>
+                      <input type="text" name="list_id" value=<%= x.list_id %> hidden>
+                      <button type="submit" class="btn bttn" name="uncomplete" formaction="/main/content/uncomplete">Mark Unfinished</button>
+                      <button type="submit" class="btn bttn" style="margin-right:2vh;" name="delete" formaction="/main/content/delete">Delete Item</button>
+                    </form>
                   </span>
                 </div>
               </li>
@@ -104,6 +112,14 @@
                 <div class="collapsible-body">
                   <span>
                     <h3 style="display:inline;"><%= x.sale_price %></h3> at <a href=<%= x.product_url %>>WalMart</a>
+                  </span>
+                  <span style="float:right;">
+                    <form action="/main/content/toggle" method="post">
+                      <input type="text" name="id" value=<%= x.id %> hidden>
+                      <input type="text" name="list_id" value=<%= x.list_id %> hidden>
+                      <button type="submit" class="btn bttn" name="uncomplete" formaction="/main/content/complete">Mark Complete</button>
+                      <button type="submit" class="btn bttn" style="margin-right:2vh;" name="delete"  formaction="/main/content/delete">Delete Item</button>
+                    </form>
                   </span>
                 </div>
               </li>

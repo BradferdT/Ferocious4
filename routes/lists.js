@@ -71,7 +71,7 @@ router.get('/:id/lists', (req, res) => {
   Promise.all([
     knex.raw(`select * from lists where id = ${req.params.id}`),
     knex.raw(`select id from users where username = '${req.signedCookies.username}'`),
-    knex.raw(`select * from content join lists on content.list_id = lists.id where lists.id = ${req.params.id}`)
+    knex.raw(`select *, content.id as id from content join lists on content.list_id = lists.id where lists.id = ${req.params.id}`)
   ]).then((data) => {
     data = data.map(x => x.rows);
     if(data[2][0] && data[2][0].user_id == data[1][0].id){
@@ -102,6 +102,28 @@ router.post('/content/add', (req, res) => {
       }).catch((err) => {
         console.log(err);
       })
+});
+
+router.post('/content/complete', (req, res) => {
+  console.log(req.body.id);
+  knex.raw(`update content set completed = true where id = ${req.body.id}`)
+      .then(() => {
+        res.redirect(`/main/${+req.body.list_id}/lists`);
+      });
+});
+
+router.post('/content/uncomplete', (req, res) => {
+  knex.raw(`update content set completed = false where id = ${req.body.id}`)
+      .then(() => {
+        res.redirect(`/main/${+req.body.list_id}/lists`);
+      });
+});
+
+router.post('/content/delete', (req, res) => {
+  knex.raw(`delete from content where id = ${req.body.id}`)
+      .then(() => {
+        res.redirect(`/main/${+req.body.list_id}/lists`);
+      });
 });
 
 router.post('/lists/add', (req, res) => {
