@@ -29,7 +29,11 @@ body {
 
 .btn {
   background-color: rgba(52, 73, 94,1.0);
-  margin: 4px;
+  margin: 4px 69px;
+}
+
+select {
+  width: 10vw;
 }
 
 /* Navbar */

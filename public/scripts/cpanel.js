@@ -11,3 +11,5 @@ $('.dropdown-button').dropdown({
 );
 
 $(".userOptions").dropdown();
+
+$('.modal').modal();
