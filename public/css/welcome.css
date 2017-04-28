@@ -136,7 +136,10 @@ body {
   background-color: rgba(52, 73, 94,1.0) !important;
 }
 
-.demo_list li{
-  color: rgba(236, 240, 241,1.0);
-  background-color: rgba(39, 174, 96,1.0);
+.demo_list h4{
+  color: rgba(52, 73, 94,1.0);
+}
+
+.about_title{
+  color: rgba(41, 128, 185,1.0);
 }
