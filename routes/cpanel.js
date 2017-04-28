@@ -56,7 +56,7 @@ router.get('/delete/:id', function(req, res, next) {
 })
 
 router.post('/create', function(req,res,next){
-  var crypted = bcrypt.hashSync(req.body.password);
+  var crypted = bcrypt.hashSync(req.body.password, 8);
   knex.raw('INSERT into users values (DEFAULT, ?, ?, ?, ?)', [req.body.username, crypted, req.body.email, req.body.admin])
   .then(function(){
     res.redirect('/cpanel');
