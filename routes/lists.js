@@ -96,8 +96,11 @@ router.get('/:id/lists', (req, res) => {
 
 router.post('/content/add', (req, res) => {
   console.log(req.body);
-  knex.raw(`insert into content values (default, ${+req.body.list_id}, ${+req.body.walmart_id}, '${req.body.item_name}', '${req.body.category_path}', ${+req.body.sale_price}, '${req.body.description}', '${req.body.thumbnail_image}', '${req.body.medium_image}', '${req.body.large_image}', '${req.body.product_url}', '${req.body.customer_rating}', '${req.body.available_online}', default, default)`)
-      .then(() => {
+  Promise.all([
+    knex.raw(`insert into content values (default, ${+req.body.list_id}, ${+req.body.walmart_id}, '${req.body.item_name}', '${req.body.category_path}', ${+req.body.sale_price}, '${req.body.description}', '${req.body.thumbnail_image}', '${req.body.medium_image}', '${req.body.large_image}', '${req.body.product_url}', '${req.body.customer_rating}', '${req.body.available_online}', default, default)`),
+    knex.raw(`update lists set completed = false where id = ${+req.body.list_id}`)
+  ])
+    .then(() => {
         res.redirect(`/main/${+req.body.list_id}/lists`);
       }).catch((err) => {
         console.log(err);
@@ -108,12 +111,28 @@ router.post('/content/complete', (req, res) => {
   console.log(req.body.id);
   knex.raw(`update content set completed = true where id = ${req.body.id}`)
       .then(() => {
-        res.redirect(`/main/${+req.body.list_id}/lists`);
+        Promise.all([
+          knex.raw(`select count(*) from content where list_id = ${+req.body.list_id}`),
+          knex.raw(`select count(*) from content where list_id = ${+req.body.list_id} and completed = true`)
+        ]).then((data) => {
+          data = data.map(x => x.rows);
+          if (data[0][0].count == data[1][0].count){
+            knex.raw(`update lists set completed = true where id = ${+req.body.list_id}`)
+              .then(() => {
+                res.redirect(`/main/${+req.body.list_id}/lists`);
+              });
+          } else {
+            res.redirect(`/main/${+req.body.list_id}/lists`);
+          }
+        })
       });
 });
 
 router.post('/content/uncomplete', (req, res) => {
-  knex.raw(`update content set completed = false where id = ${req.body.id}`)
+  Promise.all([
+    knex.raw(`update lists set completed = false where id = ${+req.body.list_id}`),
+    knex.raw(`update content set completed = false where id = ${req.body.id}`)
+  ])
       .then(() => {
         res.redirect(`/main/${+req.body.list_id}/lists`);
       });
@@ -122,7 +141,23 @@ router.post('/content/uncomplete', (req, res) => {
 router.post('/content/delete', (req, res) => {
   knex.raw(`delete from content where id = ${req.body.id}`)
       .then(() => {
-        res.redirect(`/main/${+req.body.list_id}/lists`);
+        Promise.all([
+          knex.raw(`select count(*) from content where list_id = ${+req.body.list_id}`),
+          knex.raw(`select count(*) from content where list_id = ${+req.body.list_id} and completed = true`)
+        ]).then((data) => {
+          data = data.map(x => x.rows);
+          if (data[0][0].count == data[1][0].count){
+            knex.raw(`update lists set completed = true where id = ${+req.body.list_id}`)
+              .then(() => {
+                res.redirect(`/main/${+req.body.list_id}/lists`);
+              });
+          } else {
+            knex.raw(`update lists set completed = false where id = ${+req.body.list_id}`)
+              .then(() => {
+                res.redirect(`/main/${+req.body.list_id}/lists`);
+              });
+          }
+        })
       });
 });
 
