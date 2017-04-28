@@ -58,5 +58,20 @@ router.get('/login/edit', function(req, res, next){
   }
 })
 
+router.get('/about', function(req, res, next){
+  var loggedIn = false, admin = false, linkForBtn = '/login', barText = 'Login';
+  if(req.signedCookies.username && req.signedCookies.admin == 'true'){
+    loggedIn = true;
+    admin = true;
+    linkForBtn = '/home'
+    barText = req.signedCookies.username
+  }else if(req.signedCookies.username){
+    loggedIn = true;
+    linkForBtn = '/home'
+    barText = req.signedCookies.username
+  }
+    res.render('about', {navBarText: barText, link: linkForBtn, show: loggedIn, permissions: admin});
+})
+
 
 module.exports = router;
